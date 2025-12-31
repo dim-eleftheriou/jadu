@@ -1,0 +1,6 @@
+risk_model_name: ./trained_models/lgbm_prompt_risk_model.pkl
+encoder_name: ./trained_models/modelId_encoder.pkl
+embedding_model_name: all-minilm
+embedding_model_options: 
+  num_ctx: 512
+  base_url: http://ollama:11434

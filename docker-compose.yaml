@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+
+  risk-calculator:
+    build: 
+      context: ./app
+    container_name: risk-calculator
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ollama
+
+  ollama:
+    build:
+      context: ./ollamaServer
+    container_name: ollama
+    ports:
+      - "11435:11434"
+    environment:
+      - EMBEDDING_MODEL_NAME=${EMBEDDING_MODEL_NAME}
+    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 5 && ollama pull ${EMBEDDING_MODEL_NAME} && wait"]
